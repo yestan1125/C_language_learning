@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_LENGTH 5000      // 输入字符串的最大长度
+#define MAX_LENGTH 80      // 输入字符串的最大长度
 #define MAX_WORDS 1000       // 存储单词和频次的最大单词数
 
 // 结构体用于存储单词及其出现的频次
