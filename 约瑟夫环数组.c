@@ -23,8 +23,11 @@ int josephus(int n, int k) {
 }
 
 int main() {
-    int n = 7;
-    int k = 3;
+    int n ，k;
+    printf("please input people:);
+        scanf("%d",&n);
+    printf("please input number:);
+        scanf("%d",&m);
     int lastPerson = josephus(n, k);
     printf("最后一个人的序号: %d\n", lastPerson);
     return 0;
