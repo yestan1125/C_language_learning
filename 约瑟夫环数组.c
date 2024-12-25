@@ -1,50 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+// 约瑟夫环函数
+int josephus(int n, int k) {
+    int *people = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        people[i] = i + 1;
+    }
+    int index = 0;
+    int count = n;
+    while (count > 1) {
+        index = (index + k - 1) % count;
+        // 将当前出圈的人从数组中移除，通过后面的元素向前移动
+        for (int i = index; i < count - 1; i++) {
+            people[i] = people[i + 1];
+        }
+        count--;
+    }
+    int lastPerson = people[0];
+    free(people);
+    return lastPerson;
+}
 
 int main() {
-    int n, m, q;
-    scanf("%d %d %d", &n, &m, &q);
-
-    // 特殊情况处理：如果 m=1，所有猴子都会被淘汰
-    if (m == 1) {
-        printf("none\n");
-        return 0;
-    }
-
-    int monkeys[1000] = {0};
-    for (int i = 1; i <= n; i++) {
-        monkeys[i] = 1;
-    }
-
-    int count = n;      // 记录当前剩余的猴子数量
-    int position = q;   // 当前报数位置
-    int number = 1;     // 当前报的数
-
-    while (count > 1) {
-        if (monkeys[position] == 1) {
-            if (number == m) {
-                monkeys[position] = 0;
-                count--;
-                number = 1;
-            } else {
-                number++;
-            }
-        }
-        
-        position++;
-        if (position > n) {
-            position = 1;
-        }
-    }
-    
-    if (count == 1) {
-        for (int i = 1; i <= n; i++) {
-            if (monkeys[i] == 1) {
-                printf("%d\n", i);
-                return 0;
-            }
-        }
-    }
-    
-    printf("none\n");
+    int n = 7;
+    int k = 3;
+    int lastPerson = josephus(n, k);
+    printf("最后一个人的序号: %d\n", lastPerson);
     return 0;
 }
