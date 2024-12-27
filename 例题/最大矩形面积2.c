@@ -141,3 +141,4 @@ int main() {
     free(heights);  
     return 0;
 }
+//输入格式为height = [2,1,5,6,2,3]
