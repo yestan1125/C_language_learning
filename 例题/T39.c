@@ -4,82 +4,74 @@
 #include <stdlib.h>
 
 #define MAX_LEN 2000
+#define MAX_WORDS 1000
 
-typedef struct {
-    char word[50];
-    int count;
-} WordCount;
-
+// 排序比较函数：按频次降序排序，频次相同按字典序升序
 int compare(const void *a, const void *b) {
-    WordCount *wordA = (WordCount *)a;
-    WordCount *wordB = (WordCount *)b;
-    if (wordA->count != wordB->count) {
-        return wordB->count - wordA->count;  // 按频次降序排序
-    }
-    return strcmp(wordA->word, wordB->word);  // 频次相同按字典序升序
+    int countA = ((int*)a)[1], countB = ((int*)b)[1];
+    if (countA != countB) return countB - countA;
+    return strcmp(((char**)a)[0], ((char**)b)[0]);
 }
 
-void processInput(char *input, WordCount *wordCounts, int *size) {
+// 统计单词频次
+int processInput(char *input, char *words[MAX_WORDS], int counts[MAX_WORDS]) {
     char word[50];
-    int len = 0;
+    int len = 0, size = 0;
 
     for (int i = 0; input[i] != '\0'; i++) {
         if (isalpha(input[i])) {
             word[len++] = tolower(input[i]);
         } else if (len > 0) {
-            word[len] = '\0';
-            len = 0;
-
-            // 查找是否已存在
+            word[len] = '\0'; len = 0;
             int found = 0;
-            for (int j = 0; j < *size; j++) {
-                if (strcmp(wordCounts[j].word, word) == 0) {
-                    wordCounts[j].count++;
+            for (int j = 0; j < size; j++) {
+                if (strcmp(words[j], word) == 0) {
+                    counts[j]++;
                     found = 1;
                     break;
                 }
             }
             if (!found) {
-                strcpy(wordCounts[*size].word, word);
-                wordCounts[*size].count = 1;
-                (*size)++;
+                words[size] = strdup(word);
+                counts[size++] = 1;
             }
         }
     }
-    if (len > 0) {  // 处理最后一个单词
+    if (len > 0) {
         word[len] = '\0';
         int found = 0;
-        for (int j = 0; j < *size; j++) {
-            if (strcmp(wordCounts[j].word, word) == 0) {
-                wordCounts[j].count++;
+        for (int j = 0; j < size; j++) {
+            if (strcmp(words[j], word) == 0) {
+                counts[j]++;
                 found = 1;
                 break;
             }
         }
         if (!found) {
-            strcpy(wordCounts[*size].word, word);
-            wordCounts[*size].count = 1;
-            (*size)++;
+            words[size] = strdup(word);
+            counts[size++] = 1;
         }
     }
+    return size;
 }
 
 int main() {
     char input[MAX_LEN];
-    WordCount wordCounts[1000];
-    int size = 0;
+    char *words[MAX_WORDS];
+    int counts[MAX_WORDS];
 
     // 输入字符串
-    fgets(input, MAX_LEN, stdin);
+    fgets(input, sizeof(input), stdin);
 
-    // 处理输入
-    processInput(input, wordCounts, &size);
+    // 处理输入并统计频次
+    int size = processInput(input, words, counts);
 
-    // 排序
-    qsort(wordCounts, size, sizeof(WordCount), compare);
+    // 排序并输出
+    qsort(words, size, sizeof(char*), compare);
+    printf("%s %d\n", words[0], counts[0]);
 
-    // 输出结果
-    printf("%s %d\n", wordCounts[0].word, wordCounts[0].count);
+    // 释放内存
+    for (int i = 0; i < size; i++) free(words[i]);
 
     return 0;
 }
