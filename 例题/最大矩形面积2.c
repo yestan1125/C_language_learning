@@ -3,86 +3,35 @@
 #include <string.h>
 #include <math.h>  // 使用 fmax 函数
 
-typedef struct {
-    int *data;
-    int top;
-    int size;
-} Stack;
+// 计算柱状图的最大矩形面积
+int largestRectangleArea(int* heights, int heightsSize) {
+    int *stack = (int*)malloc((heightsSize + 1) * sizeof(int)); // 定义栈
+    int top = -1; // 栈顶指针
+    int maxArea = 0; // 最大面积
+    int i = 0;
 
-// 初始化栈
-void init_stack(Stack *s, int size) {
-    s->data = (int *)malloc(sizeof(int) * size);
-    s->top = -1;
-    s->size = size;
-}
-
-// 压栈
-void push(Stack *s, int val) {
-    if (s->top + 1 == s->size) {
-        return ;
-    }
-    s->data[++s->top] = val;
-}
-
-// 出栈
-int pop(Stack *s) {
-    return s->data[s->top--];
-}
-
-// 查看栈顶元素
-int peek(Stack *s) {
-    return s->data[s->top];
-}
-
-// 判断栈是否为空
-int is_empty(Stack *s) {
-    return s->top == -1;
-}
-
-// 释放栈的内存
-void free_stack(Stack *s) {
-    free(s->data);
-    free(s);
-}
-
-// 计算矩形的最大面积
-int largestRectangleArea(int* heights, int heightsSize){
-    Stack *s = (Stack *)malloc(sizeof(Stack));
-    init_stack(s, heightsSize);
-    int *l = (int *)malloc(sizeof(int) * heightsSize);  // 左边界
-    int *r = (int *)malloc(sizeof(int) * heightsSize);  // 右边界
-    
-    // 计算每个柱子左边第一个小于它的柱子的位置
-    for (int i = 0; i < heightsSize; i++) {
-        while (!is_empty(s) && heights[peek(s)] >= heights[i]) {
-            pop(s);
+    // 遍历柱子
+    while (i < heightsSize) {
+        // 如果栈为空或者当前高度大于等于栈顶柱子的高度，则入栈
+        if (top == -1 || heights[i] >= heights[stack[top]]) {
+            stack[++top] = i++; // 入栈当前柱子下标，并移动到下一个柱子
+        } else {
+            // 否则，弹出栈顶柱子，计算以该柱子为高度的矩形面积
+            int h = heights[stack[top--]];
+            int width = (top == -1) ? i : i - stack[top] - 1; // 宽度的计算
+            maxArea = fmax(maxArea, h * width);
         }
-        l[i] = is_empty(s) ? -1 : peek(s);
-        push(s, i);
-    }
-    
-    // 清空栈
-    s->top = -1;
-
-    // 计算每个柱子右边第一个小于它的柱子的位置
-    for (int i = heightsSize - 1; i >= 0; i--) {
-        while (!is_empty(s) && heights[peek(s)] >= heights[i]) {
-            pop(s);
-        }
-        r[i] = is_empty(s) ? heightsSize : peek(s);
-        push(s, i);
     }
 
-    // 计算每个柱子的最大矩形面积
-    int ans = 0;
-    for (int i = 0; i < heightsSize; i++) {
-        ans = fmax(ans, (r[i] - l[i] - 1) * heights[i]);
+    // 处理剩余的柱子
+    while (top != -1) {
+        int h = heights[stack[top--]];
+        int width = (top == -1) ? i : i - stack[top] - 1;
+        maxArea = fmax(maxArea, h * width);
     }
 
-    free_stack(s);
-    free(l);
-    free(r);
-    return ans;
+    free(stack); // 释放栈的内存
+    return maxArea;
 }
 
 // 解析输入字符串，提取数组
@@ -141,5 +90,3 @@ int main() {
     free(heights);  
     return 0;
 }
-
-//输入格式为height = [2,1,5,6,2,3]
