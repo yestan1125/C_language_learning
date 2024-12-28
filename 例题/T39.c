@@ -75,3 +75,21 @@ int main() {
 
     return 0;
 }
+/*给定一个由英文字符、数字、空格和英文标点符号组成的字符串，长度不超过5000，请将其切分为单词，要求去掉所有的非英文字母，然后将单词全部转换成小写，然后统计每一个词出现的次数，输出频次最高的那个词以及它出现的次数。如果有多个词的频次相同，则输出按字典序排列在最前面的那个。
+
+例如给定字符串：String input = "1 fish 2 fish red fish blue fish";
+频次最高的单词是fish，它出现了4次。
+
+再比如给定字符串：If the digit is less than 10, then '0' + digit is returned. Otherwise, the value 'a' + digit - 10 is returned.
+频次最高的单词是digit和is，都出现了3次。但是digit的字典序在is前面，所以应该输出digit和3。
+
+输入格式
+一个长度不超过2000的字符串，只有末尾有回车符。
+
+输出格式
+输出一行，首先是频次最高的那个单词，然后是它出现的次数，中间用空格分隔
+
+输入样例
+A character may be part of a Unicode identifier if and only if one of the following statements is true.
+输出样例
+a  2*/
