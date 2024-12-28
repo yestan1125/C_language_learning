@@ -2,64 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-// 栈的结构体定义
-typedef struct {
-    int *data;
-    int top;
-    int size;
-} Stack;
-
-// 初始化栈
-void init_stack(Stack *stack, int size) {
-    stack->data = (int *)malloc(sizeof(int) * size);
-    stack->top = -1;
-    stack->size = size;
-}
-
-// 入栈
-void push(Stack *stack, int value) {
-    stack->data[++stack->top] = value;
-}
-
-// 出栈
-int pop(Stack *stack) {
-    return stack->data[stack->top--];
-}
-
-// 获取栈顶元素
-int peek(Stack *stack) {
-    return stack->data[stack->top];
-}
-
-// 获取栈的大小
-int is_empty(Stack *stack) {
-    return stack->top == -1;
-}
-
-// 释放栈
-void free_stack(Stack *stack) {
-    free(stack->data);
-}
-
 // 计算最大矩形面积的函数
 int largestRectangleArea(int* heights, int heightsSize) {
-    Stack stack;
-    init_stack(&stack, heightsSize + 1);  // 多分配一个位置，方便处理栈空的情况
-    int max_area = 0;
+    int *stack = (int*)malloc((heightsSize + 1) * sizeof(int)); // 栈
+    int top = -1;  // 栈顶指针
+    int max_area = 0; // 最大矩形面积
     
     for (int i = 0; i <= heightsSize; i++) {
-        int h = (i == heightsSize) ? 0 : heights[i];  // 当到达最后时，将高度设为0
+        int h = (i == heightsSize) ? 0 : heights[i];  // 如果到达最后，设为0
         
-        while (!is_empty(&stack) && h < heights[peek(&stack)]) {
-            int height = heights[pop(&stack)];  // 获取栈顶元素作为矩形的高度
-            int width = (is_empty(&stack)) ? i : i - peek(&stack) - 1;  // 计算宽度
-            max_area = (max_area > height * width) ? max_area : height * width;  // 更新最大面积
+        // 处理栈中元素，计算最大矩形
+        while (top >= 0 && h < heights[stack[top]]) {
+            int height = heights[stack[top--]];  // 获取栈顶元素
+            int width = (top == -1) ? i : i - stack[top] - 1;  // 计算宽度
+            max_area = (max_area > height * width) ? max_area : height * width;
         }
         
-        push(&stack, i);  // 压入当前柱子的索引
+        stack[++top] = i;  // 压入当前柱子的索引
     }
     
-    free_stack(&stack);
+    free(stack);
     return max_area;
 }
 
@@ -104,4 +66,3 @@ int main() {
     
     return 0;
 }
-//输入格式为[2,1,5,6,2,3]
