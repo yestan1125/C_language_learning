@@ -44,6 +44,8 @@ int main(void){
             printf("%d ",j+1);
         }
     }
+    free(arr);
+    free(sum);
     return 0;
     }
 
