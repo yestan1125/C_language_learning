@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 typedef struct grade
 {
    int a;
@@ -9,11 +10,21 @@ typedef struct grade
 int main(void){
     int m,n;
     scanf("%d %d",&m,&n);
-    grade arr[m];
+    grade *arr;
+    arr = (grade*)malloc(m*sizeof(grade));
+    if(arr == NULL){
+        printf("Memory allocation failed\n");
+        return -1;
+    }
     for(int i=0; i<m; i++){
         scanf("%d %d %d",&arr[i].a,&arr[i].b,&arr[i].c);
     }
-    int sum[m];
+    int *sum;
+    sum = (int*)malloc(m*sizeof(int));
+    if(sum == NULL){
+        printf("Memory allocation failed\n");
+        return -1;
+    }
     for(int i= 0; i<m; i++){
         sum[i] = arr[i].a+arr[i].b+arr[i].c;
     }
