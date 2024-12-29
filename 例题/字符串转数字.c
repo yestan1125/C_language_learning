@@ -58,7 +58,7 @@ int main() {
     int size = extractNumbers(input, numbers);
     
     // 输出提取出来的数字
-    printf("提取出的数字是：\n");
+    printf("the numbers is :\n");
     for (int i = 0; i < size; i++) {
         printf("%d ", numbers[i]);
     }
