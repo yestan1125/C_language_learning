@@ -1,7 +1,12 @@
-1. memcpy() 复制 //对于二维数组，memcpy的复制效果更好(连续地址)
-原型：void *  memcpy( char * str1, const char * str2 ,int n)
+1. memcpy() 复制 //对于二维数组，memcpy的复制效果更好(连续地址)\n
+原型：void *memcpy(void *dest, const void *src, size_t n);
 
-功能：将字符串str2中的n个字符拷贝到str1中；
+参数解释：
+dest：这是目标内存区域的指针。它指向的内存区域将接收从src复制过来的数据。这个指针可以指向任何类型的对象（如字符数组、整数数组、结构体等）的起始地址，因为memcpy是按字节进行操作的。
+src：这是源内存区域的指针。它指向要被复制的数据所在的内存区域，同样可以指向任何类型的对象。由于函数内部不会修改src指向的数据，所以它被声明为const void *，以确保数据的安全性。
+n：这是一个size_t类型的参数，表示要从src复制到dest的字节数。size_t通常是一个无符号整数类型，用于表示对象的大小或数组的长度等。
+返回值：
+memcpy函数返回一个void *类型的指针，这个指针实际上就是dest指针的副本。这样做的主要目的是方便函数调用后进行链式操作，不过在实际使用中，很多时候这个返回值可能没有被利用。例如，可以连续使用memcpy来复制多个不同的数据块到一个目标区域，通过返回值来连接这些操作。
 
 示例：
 
@@ -159,8 +164,8 @@
 	}
 
 5. memmove() 替换
-原型：void *  memmove( char * str1, const char * str2 ,int n)
-
+   
+原型：void *memmove(void *dest, const void *src, size_t n);
 功能：将s中的前n个字符替换为c,并返回s,功能和memcpy一样，但是可以解决linux下memcpy因为地址重叠而造成替换失败的问题。算是对memcpy的一个升级。在windows系统中没有这个问题。
 
 示例:
