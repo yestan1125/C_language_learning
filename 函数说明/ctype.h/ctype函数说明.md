@@ -10,20 +10,20 @@ c是我们输入的，需要被判断的字符。
 不是字母类的，返回值0。是字母类的，返回非0值。
 isalpha使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char str[] = "C++";
-	for(int i=0;i<3;i++)
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (isalpha(str[i])) 
-			printf("character %c is alphabetic\n", str[i]);
-		else 
-			printf("character %c is not alphabetic\n", str[i]);
+		char str[] = "C++";
+		for(int i=0;i<3;i++)
+		{
+			if (isalpha(str[i])) 
+				printf("character %c is alphabetic\n", str[i]);
+			else 
+				printf("character %c is not alphabetic\n", str[i]);
+		}
+		return 0;
 	}
-	return 0;
-}
 
 islower 小写字母判断函数
 islower头文件：ctype.h
@@ -37,18 +37,18 @@ c是我们输入的，需要被判断的字符。
 不是小写字母的，返回值0。是小写字母的，返回非0值。
 islower使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char str[] = "Test";
-	for (int i = 0; i < 4; i++)
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (islower(str[i]))
-			printf("character %c is lower.\n", str[i]);
+		char str[] = "Test";
+		for (int i = 0; i < 4; i++)
+		{
+			if (islower(str[i]))
+				printf("character %c is lower.\n", str[i]);
+		}
+		return 0;
 	}
-	return 0;
-}
 
 isupper 大写字母判断函数
 isupper头文件：ctype.h
@@ -62,18 +62,18 @@ c是我们输入的，需要被判断的字符。
 不是大写字母的，返回值0。是大写字母的，返回非0值。
 isupper使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char str[] = "Test";
-	for (int i = 0; i < 4; i++)
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (isupper(str[i]))
-			printf("character %c is upper.\n", str[i]);
+		char str[] = "Test";
+		for (int i = 0; i < 4; i++)
+		{
+			if (isupper(str[i]))
+				printf("character %c is upper.\n", str[i]);
+		}
+		return 0;
 	}
-	return 0;
-}
 
 tolower 大写字母转小写字母函数
 tolower头文件：ctype.h
@@ -86,20 +86,20 @@ c是输入的字符。
 如果c是大写字母，返回对应小写字母的ASCII码值。如果不是，则返回c本身的ASCII码值。
 tolower使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	int i = 0;
-	char str[] = "Test String.";
-	while (str[i])
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		putchar(tolower(str[i]));
-		i++;
+		int i = 0;
+		char str[] = "Test String.";
+		while (str[i])
+		{
+			putchar(tolower(str[i]));
+			i++;
+		}
+		printf("\n%s", str);
+		return 0;
 	}
-	printf("\n%s", str);
-	return 0;
-}
 
 toupper 小写字母转大写字母函数
 toupper头文件：ctype.h
@@ -112,20 +112,20 @@ c是输入的字符。
 如果c是大写字母，返回对应小写字母的ASCII码值。如果不是，则返回c本身的ASCII码值。
 toupper使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	int i = 0;
-	char str[] = "Test String.";
-	while (str[i])
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		putchar(toupper(str[i]));
-		i++;
+		int i = 0;
+		char str[] = "Test String.";
+		while (str[i])
+		{
+			putchar(toupper(str[i]));
+			i++;
+		}
+		printf("\n%s", str);
+		return 0;
 	}
-	printf("\n%s", str);
-	return 0;
-}
 
 isdigit 十进制数字判断函数
 isdigit头文件：ctype.h
@@ -139,20 +139,20 @@ c是我们输入的，需要被判断的字符。
 不是十进制数字的，返回值0。是十进制数字的，返回非0值。
 isdigit使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char id[] = "qq:2149649773";
-	int i = 0;
-	while (id[i])
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (isdigit(id[i]))
-			printf("%c", id[i]);
-		i++;
+		char id[] = "qq:2149649773";
+		int i = 0;
+		while (id[i])
+		{
+			if (isdigit(id[i]))
+				printf("%c", id[i]);
+			i++;
+		}
+		return 0;
 	}
-	return 0;
-}
 
 isxdigit 十六进制数字判断函数
 isxdigit头文件：ctype.h
@@ -166,20 +166,20 @@ c是我们输入的，需要被判断的字符。
 不是十六进制数字的，返回值0。是十六进制数字的，返回非0值。
 isxdigit使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char id[] = "qq:2149649773abcdEF";
-	int i = 0;
-	while (id[i])
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (isxdigit(id[i]))
-			printf("%c", id[i]);
-		i++;
+		char id[] = "qq:2149649773abcdEF";
+		int i = 0;
+		while (id[i])
+		{
+			if (isxdigit(id[i]))
+				printf("%c", id[i]);
+			i++;
+		}
+		return 0;
 	}
-	return 0;
-}
 
 isalnum 字母或数字判断函数
 isxdigit头文件：ctype.h
@@ -193,18 +193,17 @@ c是我们输入的，需要被判断的字符。
 不是十六进制数字的，返回值0。是十六进制数字的，返回非0值。
 isxdigit使用实例：
 
-#include <stdio.h>
-#include <ctype.h>
-int main()
-{
-	char id[] = "qq:2149649773abcdEF";
-	int i = 0;
-	while (id[i])
+	#include <stdio.h>
+	#include <ctype.h>
+	int main()
 	{
-		if (isxdigit(id[i]))
-			printf("%c", id[i]);
-		i++;
+		char id[] = "qq:2149649773abcdEF";
+		int i = 0;
+		while (id[i])
+		{
+			if (isxdigit(id[i]))
+				printf("%c", id[i]);
+			i++;
+		}
+		return 0;
 	}
-	return 0;
-}
-
