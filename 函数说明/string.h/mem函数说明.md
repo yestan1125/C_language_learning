@@ -1,4 +1,4 @@
-1. memcpy() 复制
+1. memcpy() 复制 //对于二维数组，memcpy的复制效果更好(连续地址)
 原型：void *  memcpy( char * str1, const char * str2 ,int n)
 
 功能：将字符串str2中的n个字符拷贝到str1中；
