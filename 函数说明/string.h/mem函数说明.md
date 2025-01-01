@@ -5,22 +5,22 @@
 
 示例：
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-int main()
-{
-	
-   char  str1[13]  ;
-   char * str2="hello,world!" ;
-  
-   memcpy(str1,str2,13);
-	
-   printf("\n\str1中字符为：%s\n", str1);
- 
-   system("pause");
-   return(0);
-}
+	#include <stdio.h>
+	#include <string.h>
+	#include <stdlib.h>
+	int main()
+	{
+		
+	   char  str1[13]  ;
+	   char * str2="hello,world!" ;
+	  
+	   memcpy(str1,str2,13);
+		
+	   printf("\n\str1中字符为：%s\n", str1);
+	 
+	   system("pause");
+	   return(0);
+	}
 
 2. memcmp() 比较
 原型：int  memcmp(const char * str1, const char * str2 ,int n)
@@ -37,27 +37,27 @@ int main()
 
 示例：
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-int main()
-{
-	
-   char * str1="hello,world!" ;
-   char * str2="helle" ;
-   char * resstr;
-   int res=memcmp(str1,str2,5);
-   if(res<0)
-	  resstr="小于";
-   else if(res=0)
-	   resstr="等于";
-   else 
-	   resstr="大于";
-   printf("\n\str1的前5个字符%sstr2的字符\n", resstr);
- 
-   system("pause");
-   return(0);
-}
+	#include <stdio.h>
+	#include <string.h>
+	#include <stdlib.h>
+	int main()
+	{
+		
+	   char * str1="hello,world!" ;
+	   char * str2="helle" ;
+	   char * resstr;
+	   int res=memcmp(str1,str2,5);
+	   if(res<0)
+		  resstr="小于";
+	   else if(res=0)
+		   resstr="等于";
+	   else 
+		   resstr="大于";
+	   printf("\n\str1的前5个字符%sstr2的字符\n", resstr);
+	 
+	   system("pause");
+	   return(0);
+	}
 
 3. memchr() 查找
 原型：char * memchr(const char * str, char  c ,int n)
@@ -66,22 +66,22 @@ int main()
 
 示例:
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
- 
-int main()
-{
-   char * str="hello,world!" ;
-   char  c=',' ;
-   char * pos;
-   pos=(char*) memchr(str,c,10);
-  
-   printf("\n\",\"在\"hello,world\"的下标位置为：%d\n", pos-str);
- 
-   system("pause");
-   return(0);
-}
+	#include <stdio.h>
+	#include <string.h>
+	#include <stdlib.h>
+	 
+	int main()
+	{
+	   char * str="hello,world!" ;
+	   char  c=',' ;
+	   char * pos;
+	   pos=(char*) memchr(str,c,10);
+	  
+	   printf("\n\",\"在\"hello,world\"的下标位置为：%d\n", pos-str);
+	 
+	   system("pause");
+	   return(0);
+	}
 
 4. memset() 替换
 原型：void * memset( void * ptr, int  value ,size_t n)
@@ -92,52 +92,52 @@ int main()
 
 示例1:
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
- 
-int main()
-{
-   char  str []="hello,world!" ;
-   char  c='w' ;
- 
-   memset(str,c,5);
-   printf("\n\str中字符串:%s\n", str);
- 
-   system("pause");
-   return(0);
-}
+	#include <stdio.h>
+	#include <string.h>
+	#include <stdlib.h>
+	 
+	int main()
+	{
+	   char  str []="hello,world!" ;
+	   char  c='w' ;
+	 
+	   memset(str,c,5);
+	   printf("\n\str中字符串:%s\n", str);
+	 
+	   system("pause");
+	   return(0);
+	}
 
 示例2：
 
 结构变量初始化，将结构中的变量用value初始化。
 
-#include <stdio.h>
-#include <stdlib.h>
- 
-typedef struct manager {
-	int iArr [12];
-	float fArr [5];
-	char ch; //整型int赋值给char,只要数组在-128到127之间就没问题
-} Manager;
- 
-//打印manager中的值
- void  printManager(Manager manager)
-{
-	int i=0;
-	puts("iArr值:");
-	for(; i<12; i++)   //打印数组iArr的所有元素
-		printf("第%d个: %d\n",i+1, manager.iArr[i]);
-	puts("\nmanager->fArr值:");
-	for(i=0; i<5; i++) //打印数组fArr的所有元素
-		printf("第%d个: %f\n",i+1, manager.fArr[i]);
-	puts("\nmanager->ch值:");
-	printf("%c\n", manager.ch);
-}
- 
-void memsetTest()
-{
-	Manager  manager ;
+	#include <stdio.h>
+	#include <stdlib.h>
+	 
+	typedef struct manager {
+		int iArr [12];
+		float fArr [5];
+		char ch; //整型int赋值给char,只要数组在-128到127之间就没问题
+	} Manager;
+	 
+	//打印manager中的值
+	 void  printManager(Manager manager)
+	{
+		int i=0;
+		puts("iArr值:");
+		for(; i<12; i++)   //打印数组iArr的所有元素
+			printf("第%d个: %d\n",i+1, manager.iArr[i]);
+		puts("\nmanager->fArr值:");
+		for(i=0; i<5; i++) //打印数组fArr的所有元素
+			printf("第%d个: %f\n",i+1, manager.fArr[i]);
+		puts("\nmanager->ch值:");
+		printf("%c\n", manager.ch);
+	}
+	 
+	void memsetTest()
+	{
+		Manager  manager ;
 		
 	printf("使用65初始化\n");
 	memset(&manager,65,sizeof(manager));
@@ -147,16 +147,16 @@ void memsetTest()
 	memset(&manager,0,sizeof(manager));
 	printManager(manager);
  
-}
- 
-int main()
-{
+	}
+	 
+	int main()
+	{
  
     memsetTest();
 	getchar();
 	return 0;
  
-}
+	}
 
 5. memmove() 替换
 原型：void *  memmove( char * str1, const char * str2 ,int n)
@@ -165,18 +165,18 @@ int main()
 
 示例:
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-int main()
-{
-   char * src="hello,world!";
-   char dest[20];
-   memmove(dest, src, 20);
-  
-   printf("源字符串  :%s\n",src);
-   printf("目标字符串:%s\n",dest);
-   system("pause");
-   return(0);
-}
+	#include <stdio.h>
+	#include <string.h>
+	#include <stdlib.h>
+	int main()
+	{
+	   char * src="hello,world!";
+	   char dest[20];
+	   memmove(dest, src, 20);
+	  
+	   printf("源字符串  :%s\n",src);
+	   printf("目标字符串:%s\n",dest);
+	   system("pause");
+	   return(0);
+	}
 
