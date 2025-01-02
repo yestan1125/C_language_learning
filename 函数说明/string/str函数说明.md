@@ -6,7 +6,7 @@
 返回：dest 
 
 示例：
-
+```c
 	#include<stdio.h>
 	#include<string.h>
 	int main(void)
@@ -18,7 +18,7 @@
 		printf("目标字符串:%s\n",desn);
 		return 0;
 	}
-
+```
 2. strncpy() 复制
 原型：char * strncpy(char *dest, char *src, size_t  maxsize)
 
@@ -27,7 +27,7 @@
 返回： dest
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -42,7 +42,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 3. strcat() 合并
 原型：char *strcat(char *dest, const char *src)
 
@@ -51,7 +51,7 @@
 返回: dest
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -65,7 +65,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 4. strncat() 合并
 原型：char *strcat(char *dest, const char *src,size_t maxsize)
 
@@ -74,7 +74,7 @@
 返回: dest
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -88,7 +88,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 5. strcmp() 比较
 原型：int strcmp(const char *str1, const char *str2)
 
@@ -101,7 +101,7 @@
 当str1>str2,返回值大于0
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -121,7 +121,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 6. strncmp() 比较
 原型：int strncmp(const char *str1, const char *str2,size_t maxsize)
 
@@ -134,7 +134,7 @@
 当str1>str2,返回值大于0
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -154,7 +154,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 7. strchr() 查找
 原型：char *strchr(const char * src, int c)
 
@@ -163,7 +163,7 @@
 返回:  字符c在src中的第一次出现位置的指针
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -180,7 +180,7 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 8. strrchr() 查找
 原型：char * strrchr(const char * src, int c)
 
@@ -189,7 +189,7 @@
 返回:  字符c在src中的最后一次出现位置的指针
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -204,14 +204,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 9. strcspn() 查找
 原型：size_t strcspn(const char * str1, const char * str2)
 
 功能：返回字符串 str1 中包含str2中字符的前缀的长度。或者可以理解为字符串 str1 中第一个在字符串 str2 中出现的字符下标 。直接看代码和运行结果，看完就明白了。
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -228,14 +228,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 10. strspn() 查找
 原型：size_t strspn(const char * str1, const char * str2)
 
 功能：返回字符串 str1 中不包含str2中字符的前缀的长度。或者可以理解为 查找字符串 str1 中第一个没有在字符串 str2 中出现的字符下标 。直接看代码和运行结果，看完就明白了。这个容易和strcspn()函数搞反，得格外注意。
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -252,14 +252,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 11. strpbrk() 查找
 原型：char  *  strpbrk(const char * str1, const char * str2)
 
 功能：查找str2的任意字符在str1中第一次出现的位置，并返回指向这个位置的指针
 
 返回:  字符指针
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -277,14 +277,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 12. strstr() 查找
 原型：char  *  strstr(const char * str1, const char * str2)
 
 功能：查找str2在在str1中第一次出现的位置，并返回指向这个位置的指针
 
 返回:  字符指针
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -301,14 +301,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 13. strlen() 计算长度
 原型：size_t  strstr(const char * str)
 
 功能：返回str的长度
 
 示例:
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -323,14 +323,14 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
 15. strtok() 截取
 原型：char * strtok(char* str1,const char* str2)
 
 功能：使用str2,对str1字符串进行分隔截取，返回截取的部分字符串
 
 示例:
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -350,4 +350,4 @@
 	   system("pause");
 	   return(0);
 	}
-
+```
