@@ -9,7 +9,7 @@ n：这是一个size_t类型的参数，表示要从src复制到dest的字节数
 memcpy函数返回一个void *类型的指针，这个指针实际上就是dest指针的副本。这样做的主要目的是方便函数调用后进行链式操作，不过在实际使用中，很多时候这个返回值可能没有被利用。例如，可以连续使用memcpy来复制多个不同的数据块到一个目标区域，通过返回值来连接这些操作。
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -26,7 +26,7 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	   system("pause");
 	   return(0);
 	}
-
+```
 2. memcmp() 比较
 原型：int  memcmp(const char * str1, const char * str2 ,int n)
 
@@ -41,7 +41,7 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
         当str1>str2时，返回值>0
 
 示例：
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -63,14 +63,14 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	   system("pause");
 	   return(0);
 	}
-
+```
 3. memchr() 查找
 原型：char * memchr(const char * str, char  c ,int n)
 
 功能：在str中前n个字符中查找 c的位置，返回找到的位置的指针，如果找不到返回NULL
 
 示例:
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -87,7 +87,7 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	   system("pause");
 	   return(0);
 	}
-
+```
 4. memset() 替换
 原型：void * memset( void * ptr, int  value ,size_t n)
 
@@ -96,7 +96,7 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
          将ptr中的前n个数据替换为value,并返回ptr,
 
 示例1:
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -112,11 +112,11 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	   system("pause");
 	   return(0);
 	}
-
+```
 示例2：
 
 结构变量初始化，将结构中的变量用value初始化。
-
+```c
 	#include <stdio.h>
 	#include <stdlib.h>
 	 
@@ -162,14 +162,14 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	return 0;
  
 	}
-
+```
 5. memmove() 替换
    
 原型：void *memmove(void *dest, const void *src, size_t n);
 功能：将s中的前n个字符替换为c,并返回s,功能和memcpy一样，但是可以解决linux下memcpy因为地址重叠而造成替换失败的问题。算是对memcpy的一个升级。在windows系统中没有这个问题。
 
 示例:
-
+```c
 	#include <stdio.h>
 	#include <string.h>
 	#include <stdlib.h>
@@ -184,4 +184,4 @@ memcpy函数返回一个void *类型的指针，这个指针实际上就是dest�
 	   system("pause");
 	   return(0);
 	}
-
+```
