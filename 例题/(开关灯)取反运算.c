@@ -23,7 +23,7 @@ int main(void) {
     for (int i = 0; i < n; i++) {
         if (arr[i] == 0) {  // 如果灯是关闭状态（值为0）
             if (flag) {
-                printf(" %d", i + 1);  // 输出逗号间隔
+                printf(",%d", i + 1);  // 输出逗号间隔
             }
             else {
                 printf("%d", i + 1);
