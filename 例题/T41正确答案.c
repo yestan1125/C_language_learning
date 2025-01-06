@@ -1,60 +1,74 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-// 定义结构体表示考生信息
-typedef struct Student {
+typedef struct {
+    int id;
     int chinese;
     int math;
     int english;
-    int index;  // 考生序号，对应输入的行号（从1开始）
 } Student;
 
-// 比较函数，用于qsort的自定义比较规则
-int compare(const void *a, const void *b) {
-    Student *studentA = (Student *)a;
-    Student *studentB = (Student *)b;
-    // 先按总分降序排列
-    int totalA = studentA->chinese + studentA->math + studentA->english;
-    int totalB = studentB->chinese + studentB->math + studentB->english;
-    if (totalA!= totalB) {
-        return totalB - totalA;
-    }
-    // 若总分相同，按语文分数降序排序
-    if (studentA->chinese!= studentB->chinese) {
-        return studentB->chinese - studentA->chinese;
-    }
-    // 若语文分数相同，按数学分数降序排序
-    if (studentA->math!= studentB->math) {
-        return studentB->math - studentA->math;
-    }
-    // 若数学分数相同，按英语分数降序排序
-    if (studentA->english!= studentB->english) {
-        return studentB->english - studentA->english;
-    }
-    // 若所有分数都相同，按录入的顺序排列（序号小的在前）
-    return studentA->index - studentB->index;
+void swap(Student *a, Student *b) {//交换两个学生的信息
+    Student temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-int main() {
-    int n, m;
-    scanf("%d %d", &n, &m);
-    Student *students = (Student *)malloc(n * sizeof(Student));
-    if (students == NULL) {
-        printf("内存分配失败\n");
-        return 1;
+void sortStudents(Student *student, int n){
+    for(int i=0; i<n-1; i++){
+        for(int j=0; j<n-i-1; j++){
+            int total1 = student[j].chinese + student[j].math + student[j].english;//计算总分
+            int total2 = student[j+1].chinese + student[j+1].math + student[j+1].english;//计算总分
+            if(total1 < total2){
+                swap(&student[j], &student[j+1]);
+            }
+            else if(total1 == total2){
+                if(student[j].chinese < student[j+1].chinese){
+                    swap(&student[j], &student[j+1]);
+                }
+                }
+            else if(student[j].chinese == student[j+1].chinese){
+                    if(student[j].math < student[j+1].math){
+                        swap(&student[j], &student[j+1]);
+                    }
+                }
+            else if(student[j].math == student[j+1].math){
+                if(student[j].english < student[j+1].english){
+                    swap(&student[j], &student[j+1]);
+                }
+                }
+            else if(student[j].english == student[j+1].english){
+                if(student[j].id > student[j+1].id){
+                    swap(&student[j], &student[j+1]);
+                }
+            }
+        }
     }
-    // 读取每个考生的信息并记录序号
-    for (int i = 0; i < n; i++) {
-        students[i].index = i + 1;
-        scanf("%d %d %d", &students[i].chinese, &students[i].math, &students[i].english);
+}
+
+int main(){
+    int m,n;
+    scanf("%d %d", &m, &n);
+    Student *student = (Student *)malloc(m * sizeof(Student));
+    if(student == NULL){
+        printf("malloc failed\n");
+        return -1;
     }
-    // 使用qsort进行排序
-    qsort(students, n, sizeof(Student), compare);
-    // 输出前m个考生的序号
-    for (int i = 0; i < m; i++) {
-        printf("%d ", students[i].index);
+    for(int i=0; i<m; i++){
+        student[i].id = i+1;
     }
-    printf("\n");
-    free(students);
+    for(int i=0; i<m; i++){
+        scanf("%d %d %d", &student[i].chinese, &student[i].math, &student[i].english);
+    }
+    sortStudents(student, m);
+    int flag = 0;
+    for(int i=0; i<n; i++){
+        if(flag == 0){
+            printf("%d", student[i].id);
+            flag = 1;
+        }
+        else{
+            printf(" %d", student[i].id);
+        }
+    }
     return 0;
 }
