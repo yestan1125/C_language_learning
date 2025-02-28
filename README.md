@@ -1,4 +1,4 @@
-# Maybe one day I'll open up this C language learning repository, provided that I'm capable enough.
+# Provided that you are capable enough.
 以下是一份C语言学习路线图：
 
 ### 基础入门
